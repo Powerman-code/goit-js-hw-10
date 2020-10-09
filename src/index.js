@@ -1,4 +1,4 @@
-import menuItemTpl from "./templates/menuItem.hbs";
+import menuItemTpl from "../templates/menuItem.hbs";
 import dishes from "./menu.json";
 console.log(menuItemTpl);
 
