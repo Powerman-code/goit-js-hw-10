@@ -1,6 +1,6 @@
 import menuItemTpl from "../templates/menuItem.hbs";
 import dishes from "./menu.json";
-console.log(menuItemTpl);
+console.log(menuItemTpl(dishes));
 
 const menuItemMarkup = createMenuItemMarkup(dishes);
 

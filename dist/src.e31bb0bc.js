@@ -2306,7 +2306,7 @@ var _menu = _interopRequireDefault(require("./menu.json"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-console.log(_menuItem.default);
+console.log((0, _menuItem.default)(_menu.default));
 var menuItemMarkup = createMenuItemMarkup(_menu.default);
 
 function createMenuItemMarkup(dishes) {
