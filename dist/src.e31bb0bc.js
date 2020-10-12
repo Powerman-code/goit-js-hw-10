@@ -2232,7 +2232,91 @@ var templateFunction = _handlebars.default.template({
           "column": 37
         }
       }
-    }) : helper)) + "\">\r\n                Ароматный, сытный, шипящий домашний картофель, фаршированный\r\n                сметанно-беконной начинкой, — это очень простой и очень эффектный способ\r\n                накормить большое количество человек, практически не потратив на готовку\r\n                ни сил, ни времени. Обычную картошку при желании тут можно заменить на\r\n                сладкий батат, а в начинку добавить, к примеру, кукурузу или сладкий\r\n                красный перец.\r\n            </p>\r\n\r\n            <ul class=\"tag-list\">\r\n            </ul>\r\n        </div>\r\n\r\n        <button class=\"card__button button\">\r\n            <i class=\"material-icons button__icon\"> shopping_cart </i>\r\n            В корзину\r\n        </button>\r\n    </article>\r\n</li>";
+    }) : helper)) + "\">\r\n                Ароматный, сытный, шипящий домашний картофель, фаршированный\r\n                сметанно-беконной начинкой, — это очень простой и очень эффектный способ\r\n                накормить большое количество человек, практически не потратив на готовку\r\n                ни сил, ни времени. Обычную картошку при желании тут можно заменить на\r\n                сладкий батат, а в начинку добавить, к примеру, кукурузу или сладкий\r\n                красный перец.\r\n            </p>\r\n\r\n            <ul class=\"tag-list\">\r\n                <li class=\"tag-list__item\">" + alias4((helper = (helper = lookupProperty(helpers, "ingredients") || (depth0 != null ? lookupProperty(depth0, "ingredients") : depth0)) != null ? helper : alias2, _typeof(helper) === alias3 ? helper.call(alias1, {
+      "name": "ingredients",
+      "hash": {},
+      "data": data,
+      "loc": {
+        "start": {
+          "line": 21,
+          "column": 43
+        },
+        "end": {
+          "line": 21,
+          "column": 58
+        }
+      }
+    }) : helper)) + "</li>\r\n                <li class=\"tag-list__item\">" + alias4((helper = (helper = lookupProperty(helpers, "ingredients") || (depth0 != null ? lookupProperty(depth0, "ingredients") : depth0)) != null ? helper : alias2, _typeof(helper) === alias3 ? helper.call(alias1, {
+      "name": "ingredients",
+      "hash": {},
+      "data": data,
+      "loc": {
+        "start": {
+          "line": 22,
+          "column": 43
+        },
+        "end": {
+          "line": 22,
+          "column": 58
+        }
+      }
+    }) : helper)) + "</li>\r\n                <li class=\"tag-list__item\">" + alias4((helper = (helper = lookupProperty(helpers, "ingredients") || (depth0 != null ? lookupProperty(depth0, "ingredients") : depth0)) != null ? helper : alias2, _typeof(helper) === alias3 ? helper.call(alias1, {
+      "name": "ingredients",
+      "hash": {},
+      "data": data,
+      "loc": {
+        "start": {
+          "line": 23,
+          "column": 43
+        },
+        "end": {
+          "line": 23,
+          "column": 58
+        }
+      }
+    }) : helper)) + "</li>\r\n                <li class=\"tag-list__item\">" + alias4((helper = (helper = lookupProperty(helpers, "ingredients") || (depth0 != null ? lookupProperty(depth0, "ingredients") : depth0)) != null ? helper : alias2, _typeof(helper) === alias3 ? helper.call(alias1, {
+      "name": "ingredients",
+      "hash": {},
+      "data": data,
+      "loc": {
+        "start": {
+          "line": 24,
+          "column": 43
+        },
+        "end": {
+          "line": 24,
+          "column": 58
+        }
+      }
+    }) : helper)) + "</li>\r\n                <li class=\"tag-list__item\">" + alias4((helper = (helper = lookupProperty(helpers, "ingredients") || (depth0 != null ? lookupProperty(depth0, "ingredients") : depth0)) != null ? helper : alias2, _typeof(helper) === alias3 ? helper.call(alias1, {
+      "name": "ingredients",
+      "hash": {},
+      "data": data,
+      "loc": {
+        "start": {
+          "line": 25,
+          "column": 43
+        },
+        "end": {
+          "line": 25,
+          "column": 58
+        }
+      }
+    }) : helper)) + "</li>\r\n                <li class=\"tag-list__item\">" + alias4((helper = (helper = lookupProperty(helpers, "ingredients") || (depth0 != null ? lookupProperty(depth0, "ingredients") : depth0)) != null ? helper : alias2, _typeof(helper) === alias3 ? helper.call(alias1, {
+      "name": "ingredients",
+      "hash": {},
+      "data": data,
+      "loc": {
+        "start": {
+          "line": 26,
+          "column": 43
+        },
+        "end": {
+          "line": 26,
+          "column": 58
+        }
+      }
+    }) : helper)) + "</li>\r\n            </ul>\r\n        </div>\r\n\r\n        <button class=\"card__button button\">\r\n            <i class=\"material-icons button__icon\"> shopping_cart </i>\r\n            В корзину\r\n        </button>\r\n    </article>\r\n</li>";
   },
   "useData": true
 });
@@ -2308,6 +2392,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 console.log((0, _menuItem.default)(_menu.default));
 var menuItemMarkup = createMenuItemMarkup(_menu.default);
+var galaryList = document.querySelector('.js-menu'); // console.log(galaryList);
+
+galaryList.insertAdjacentHTML("beforeend", menuItemMarkup);
 
 function createMenuItemMarkup(dishes) {
   //   return dishes.map((dish) => menuItemTpl(dish)).join("");
@@ -2341,7 +2428,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57894" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60167" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
