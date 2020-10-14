@@ -2349,7 +2349,47 @@ themeAdjusterCheckboxEl.addEventListener('change', onThemeChange);
 var theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme'
-}; // const STORAGE_KEY = 'lightTheme';
+};
+
+function onThemeChange(evt) {
+  var currentTheme = evt.currentTarget.checked ? 'dark-theme' : 'light-theme';
+  localStorage.setItem('pageTheme', currentTheme);
+  var savedTheme = localStorage.getItem('pageTheme');
+  console.log(savedTheme);
+  onLocalStorageChange(savedTheme);
+}
+
+function onLocalStorageChange(savedTheme) {
+  // if (savedTheme === '') {
+  //   bodyEl.classList.add(theme.LIGHT);
+  // }
+  // else if (savedTheme === bodyEl.classList.contains("dark-theme")) {
+  //   bodyEl.classList.remove(theme.LIGHT);
+  //   bodyEl.classList.add(theme.DARK);
+  //   themeAdjusterCheckboxEl.checked = true;
+  //   // console.log('да, тема темная');
+  //   console.log(savedTheme);
+  //   console.log(bodyEl);
+  //   console.log(savedTheme === bodyEl.classList.contains("light-theme"));
+  //   // console.log(bodyEl.classList.contains("light-theme"));
+  // } else if (savedTheme === bodyEl.classList.contains("light-theme")) {
+  //   // console.log('нет, тема светлая');
+  //   bodyEl.classList.remove(theme.DARK);
+  //   bodyEl.classList.add(theme.LIGHT);
+  //   console.log(bodyEl);
+  //   console.log(savedTheme);
+  //   console.log(savedTheme === bodyEl.classList.contains("light-theme"));
+  //   // console.log(bodyEl.classList.contains("light-theme"));
+  // }
+  if (localStorage.getItem('pageTheme') === null || localStorage.getItem('pageTheme') === 'light-theme') {
+    bodyEl.classList.add(theme.LIGHT);
+  } else {
+    bodyEl.classList.add(theme.DARK);
+    themeAdjusterCheckboxEl.checked = true;
+  }
+}
+
+; // const STORAGE_KEY = 'lightTheme';
 // const savedTheme = localStorage.getItem(STORAGE_KEY);
 // bodyEl.classList.add(theme.LIGHT);
 // function onThemeChange(evt) {
@@ -2382,55 +2422,18 @@ var theme = {
 //   bodyEl.classList.add(".dark-theme");
 // };
 //   // console.log(localStorage.pageTheme !== bodyEl.classList.contains("light-theme"))
-
-var savedTheme = localStorage.getItem('pageTheme');
-console.log(theTheme);
-
-function onThemeChange(evt) {
-  console.log('click'); // console.log(evt.currentTarget.checked);
-
-  if (evt.currentTarget.checked) {
-    localStorage.setItem('pageTheme', 'dark-theme'); // console.log(localStorage)
-    // console.log(themeAdjusterCheckboxEl.checked)
-  }
-
-  if (!evt.currentTarget.checked) {
-    localStorage.setItem('pageTheme', 'light-theme'); // console.log(localStorage);
-  }
-
-  console.log(bodyEl);
-}
-
-; // if (localStorage.pageTheme !== bodyEl.classList.contains("light-theme")) {
-//   bodyEl.classList.add("light-theme");
-//   bodyEl.classList.remove(".dark-theme");
-//     // console.log(bodyEl);
-//     // console.log(localStorage.pageTheme);
-//     // console.log(localStorage.pageTheme);
-// } else {
-//   bodyEl.classList.remove(".light-theme");
-//   bodyEl.classList.add(".dark-theme");
+// const savedTheme = localStorage.getItem('pageTheme');
+// console.log(theTheme);
+// function onThemeChange(evt) {
+//   console.log('click');
+//   if (evt.currentTarget.checked) {
+//     localStorage.setItem('pageTheme','dark-theme');
+//   }
+//   else {
+//     localStorage.setItem('pageTheme','light-theme');
+//   }
+//   console.log(bodyEl);
 // };
-// console.log(localStorage.pageTheme !== bodyEl.classList.contains("light-theme"))
-
-if (savedTheme === '') {
-  bodyEl.classList.add(theme.LIGHT);
-}
-
-;
-
-if (savedTheme === theme.DARK) {
-  bodyEl.classList.remove(theme.LIGHT);
-  bodyEl.classList.add(theme.DARK);
-  themeAdjusterCheckboxEl.checked = true;
-  console.log('да, тема темная');
-  console.log(savedTheme);
-} else if (savedTheme === theme.LIGHT) {
-  console.log('нет, тема светлая');
-  console.log(savedTheme);
-  bodyEl.classList.remove(theme.DARK);
-  bodyEl.classList.add(theme.LIGHT);
-}
 },{"../templates/menuItem.hbs":"../templates/menuItem.hbs","./menu.json":"menu.json"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -2459,7 +2462,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57257" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56469" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
