@@ -31,42 +31,94 @@ const theme = {
   DARK: 'dark-theme',
 };
 
-const STORAGE_KEY = 'lightTheme';
+// const STORAGE_KEY = 'lightTheme';
 // const savedTheme = localStorage.getItem(STORAGE_KEY);
 
-bodyEl.classList.add(theme.LIGHT);
+// bodyEl.classList.add(theme.LIGHT);
+
+// function onThemeChange(evt) {
+//   console.log('click');
+//   // console.log(evt.currentTarget.checked);
+
+//   if (evt.currentTarget.checked) {
+//     bodyEl.classList.remove("light-theme");
+//     bodyEl.classList.add("dark-theme");
+//     themeAdjusterCheckboxEl.checked;
+//     localStorage.setItem('pageTheme','dark-theme');
+//     // console.log(localStorage)
+//     // console.log(themeAdjusterCheckboxEl.checked)
+//   }
+
+//   if (!evt.currentTarget.checked) {
+//     bodyEl.classList.remove("dark-theme");
+//     bodyEl.classList.add("light-theme");
+//     localStorage.setItem('pageTheme','light-theme');
+//     // console.log(localStorage);
+//   }
+//   console.log(bodyEl);
+// };
+
+// if (localStorage.pageTheme !== bodyEl.classList.contains("light-theme")) {
+//   bodyEl.classList.add("light-theme");
+//   bodyEl.classList.remove(".dark-theme");
+
+//     // console.log(bodyEl);
+//     // console.log(localStorage.pageTheme);
+//     // console.log(localStorage.pageTheme);
+// } else {
+//   bodyEl.classList.remove(".light-theme");
+//   bodyEl.classList.add(".dark-theme");
+// };
+//   // console.log(localStorage.pageTheme !== bodyEl.classList.contains("light-theme"))
+
+const savedTheme = localStorage.getItem('pageTheme');
+console.log(theTheme);
 
 function onThemeChange(evt) {
   console.log('click');
-  console.log(evt.currentTarget.checked);
+  // console.log(evt.currentTarget.checked);
 
   if (evt.currentTarget.checked) {
-    bodyEl.classList.remove("light-theme");
-    bodyEl.classList.add("dark-theme");
-    themeAdjusterCheckboxEl.checked;
+
     localStorage.setItem('pageTheme','dark-theme');
     // console.log(localStorage)
     // console.log(themeAdjusterCheckboxEl.checked)
   }
 
   if (!evt.currentTarget.checked) {
-    bodyEl.classList.remove("dark-theme");
-    bodyEl.classList.add("light-theme");
     localStorage.setItem('pageTheme','light-theme');
     // console.log(localStorage);
   }
   console.log(bodyEl);
 };
 
-if (localStorage.pageTheme !== bodyEl.classList.contains("light-theme")) {
-  bodyEl.classList.add("light-theme");
-  bodyEl.classList.remove(".dark-theme");
+// if (localStorage.pageTheme !== bodyEl.classList.contains("light-theme")) {
+//   bodyEl.classList.add("light-theme");
+//   bodyEl.classList.remove(".dark-theme");
 
-    // console.log(bodyEl);
-    // console.log(localStorage.pageTheme);
-    // console.log(localStorage.pageTheme);
-} else {
-  bodyEl.classList.remove(".light-theme");
-  bodyEl.classList.add(".dark-theme");
-};
+//     // console.log(bodyEl);
+//     // console.log(localStorage.pageTheme);
+//     // console.log(localStorage.pageTheme);
+// } else {
+//   bodyEl.classList.remove(".light-theme");
+//   bodyEl.classList.add(".dark-theme");
+// };
   // console.log(localStorage.pageTheme !== bodyEl.classList.contains("light-theme"))
+
+if (savedTheme === '') {
+ bodyEl.classList.add(theme.LIGHT);
+};
+
+if (savedTheme === theme.DARK) {
+  bodyEl.classList.remove(theme.LIGHT);
+  bodyEl.classList.add(theme.DARK);
+  themeAdjusterCheckboxEl.checked = true;
+  console.log('да, тема темная');
+  console.log(savedTheme);
+
+} else if (savedTheme === theme.LIGHT) {
+  console.log('нет, тема светлая');
+  console.log(savedTheme);
+  bodyEl.classList.remove(theme.DARK);
+  bodyEl.classList.add(theme.LIGHT);
+}
