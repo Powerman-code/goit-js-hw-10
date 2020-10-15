@@ -2356,6 +2356,19 @@ function onThemeChange(evt) {
   localStorage.setItem('pageTheme', currentTheme);
   var savedTheme = localStorage.getItem('pageTheme');
   console.log(savedTheme);
+
+  if (savedTheme === theme.LIGHT) {
+    bodyEl.classList.remove(theme.DARK);
+  } else {
+    bodyEl.classList.remove(theme.LIGHT);
+  } // if (savedTheme === theme.DARK) {
+  //   bodyEl.classList.remove(theme.LIGHT);
+  //   themeAdjusterCheckboxEl.checked = true;
+  // } else {
+  //   bodyEl.classList.remove(theme.DARK);
+  // }
+
+
   onLocalStorageChange(savedTheme);
 }
 
@@ -2384,8 +2397,7 @@ function onLocalStorageChange(savedTheme) {
   if (localStorage.getItem('pageTheme') === null || localStorage.getItem('pageTheme') === 'light-theme') {
     bodyEl.classList.add(theme.LIGHT);
   } else {
-    bodyEl.classList.add(theme.DARK);
-    themeAdjusterCheckboxEl.checked = true;
+    bodyEl.classList.add(theme.DARK); // themeAdjusterCheckboxEl.checked = true;
   }
 }
 
@@ -2462,7 +2474,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56469" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54682" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
