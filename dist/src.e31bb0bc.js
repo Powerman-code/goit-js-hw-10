@@ -2359,49 +2359,54 @@ function onThemeChange(evt) {
 
   if (savedTheme === theme.LIGHT) {
     bodyEl.classList.remove(theme.DARK);
+    bodyEl.classList.add(theme.LIGHT);
   } else {
     bodyEl.classList.remove(theme.LIGHT);
+    bodyEl.classList.add(theme.DARK);
   } // if (savedTheme === theme.DARK) {
   //   bodyEl.classList.remove(theme.LIGHT);
   //   themeAdjusterCheckboxEl.checked = true;
   // } else {
   //   bodyEl.classList.remove(theme.DARK);
   // }
+  // onLocalStorageChange(savedTheme);
+
+} // onLocalStorageChange(savedTheme);
+// function onLocalStorageChange(savedTheme) {
+//   // if (savedTheme === '') {
+//   //   bodyEl.classList.add(theme.LIGHT);
+//   // }
+//   // else if (savedTheme === bodyEl.classList.contains("dark-theme")) {
+//   //   bodyEl.classList.remove(theme.LIGHT);
+//   //   bodyEl.classList.add(theme.DARK);
+//   //   themeAdjusterCheckboxEl.checked = true;
+//   //   // console.log('да, тема темная');
+//   //   console.log(savedTheme);
+//   //   console.log(bodyEl);
+//   //   console.log(savedTheme === bodyEl.classList.contains("light-theme"));
+//   //   // console.log(bodyEl.classList.contains("light-theme"));
+//   // } else if (savedTheme === bodyEl.classList.contains("light-theme")) {
+//   //   // console.log('нет, тема светлая');
+//   //   bodyEl.classList.remove(theme.DARK);
+//   //   bodyEl.classList.add(theme.LIGHT);
+//   //   console.log(bodyEl);
+//   //   console.log(savedTheme);
+//   //   console.log(savedTheme === bodyEl.classList.contains("light-theme"));
+//   //   // console.log(bodyEl.classList.contains("light-theme"));
+//   // }
+// };
 
 
-  onLocalStorageChange(savedTheme);
-}
+onLocalStorageChange();
 
-function onLocalStorageChange(savedTheme) {
-  // if (savedTheme === '') {
-  //   bodyEl.classList.add(theme.LIGHT);
-  // }
-  // else if (savedTheme === bodyEl.classList.contains("dark-theme")) {
-  //   bodyEl.classList.remove(theme.LIGHT);
-  //   bodyEl.classList.add(theme.DARK);
-  //   themeAdjusterCheckboxEl.checked = true;
-  //   // console.log('да, тема темная');
-  //   console.log(savedTheme);
-  //   console.log(bodyEl);
-  //   console.log(savedTheme === bodyEl.classList.contains("light-theme"));
-  //   // console.log(bodyEl.classList.contains("light-theme"));
-  // } else if (savedTheme === bodyEl.classList.contains("light-theme")) {
-  //   // console.log('нет, тема светлая');
-  //   bodyEl.classList.remove(theme.DARK);
-  //   bodyEl.classList.add(theme.LIGHT);
-  //   console.log(bodyEl);
-  //   console.log(savedTheme);
-  //   console.log(savedTheme === bodyEl.classList.contains("light-theme"));
-  //   // console.log(bodyEl.classList.contains("light-theme"));
-  // }
+function onLocalStorageChange() {
   if (localStorage.getItem('pageTheme') === null || localStorage.getItem('pageTheme') === 'light-theme') {
-    bodyEl.classList.add(theme.LIGHT);
+    bodyEl.classList.add(theme.LIGHT); // themeAdjusterCheckboxEl.checked = false;
   } else {
-    bodyEl.classList.add(theme.DARK); // themeAdjusterCheckboxEl.checked = true;
+    bodyEl.classList.add(theme.DARK);
+    themeAdjusterCheckboxEl.checked = true;
   }
-}
-
-; // const STORAGE_KEY = 'lightTheme';
+} // const STORAGE_KEY = 'lightTheme';
 // const savedTheme = localStorage.getItem(STORAGE_KEY);
 // bodyEl.classList.add(theme.LIGHT);
 // function onThemeChange(evt) {
