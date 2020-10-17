@@ -117,7 +117,79 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../node_modules/handlebars/dist/handlebars.runtime.js":[function(require,module,exports) {
+})({"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"styles.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/handlebars/dist/handlebars.runtime.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 /**!
@@ -2317,7 +2389,7 @@ module.exports = [{
   "price": 240,
   "ingredients": ["Круглый рис", "Мини цукини", "Тертый имбирь", "Грибы шиитаке", "Соевый соус", "Кунжутное масло"]
 }];
-},{}],"index.js":[function(require,module,exports) {
+},{}],"pageMarkup.js":[function(require,module,exports) {
 "use strict";
 
 var _menuItem = _interopRequireDefault(require("../templates/menuItem.hbs"));
@@ -2343,6 +2415,7 @@ function createMenuItemMarkup(dishes) {
 }
 
 ;
+},{"../templates/menuItem.hbs":"../templates/menuItem.hbs","./menu.json":"menu.json"}],"pageTheme.js":[function(require,module,exports) {
 var bodyEl = document.querySelector('body');
 var themeAdjusterCheckboxEl = document.querySelector('.theme-switch__toggle');
 themeAdjusterCheckboxEl.addEventListener('change', onThemeChange);
@@ -2363,39 +2436,8 @@ function onThemeChange(evt) {
   } else {
     bodyEl.classList.remove(theme.LIGHT);
     bodyEl.classList.add(theme.DARK);
-  } // if (savedTheme === theme.DARK) {
-  //   bodyEl.classList.remove(theme.LIGHT);
-  //   themeAdjusterCheckboxEl.checked = true;
-  // } else {
-  //   bodyEl.classList.remove(theme.DARK);
-  // }
-  // onLocalStorageChange(savedTheme);
-
-} // onLocalStorageChange(savedTheme);
-// function onLocalStorageChange(savedTheme) {
-//   // if (savedTheme === '') {
-//   //   bodyEl.classList.add(theme.LIGHT);
-//   // }
-//   // else if (savedTheme === bodyEl.classList.contains("dark-theme")) {
-//   //   bodyEl.classList.remove(theme.LIGHT);
-//   //   bodyEl.classList.add(theme.DARK);
-//   //   themeAdjusterCheckboxEl.checked = true;
-//   //   // console.log('да, тема темная');
-//   //   console.log(savedTheme);
-//   //   console.log(bodyEl);
-//   //   console.log(savedTheme === bodyEl.classList.contains("light-theme"));
-//   //   // console.log(bodyEl.classList.contains("light-theme"));
-//   // } else if (savedTheme === bodyEl.classList.contains("light-theme")) {
-//   //   // console.log('нет, тема светлая');
-//   //   bodyEl.classList.remove(theme.DARK);
-//   //   bodyEl.classList.add(theme.LIGHT);
-//   //   console.log(bodyEl);
-//   //   console.log(savedTheme);
-//   //   console.log(savedTheme === bodyEl.classList.contains("light-theme"));
-//   //   // console.log(bodyEl.classList.contains("light-theme"));
-//   // }
-// };
-
+  }
+}
 
 onLocalStorageChange();
 
@@ -2406,52 +2448,16 @@ function onLocalStorageChange() {
     bodyEl.classList.add(theme.DARK);
     themeAdjusterCheckboxEl.checked = true;
   }
-} // const STORAGE_KEY = 'lightTheme';
-// const savedTheme = localStorage.getItem(STORAGE_KEY);
-// bodyEl.classList.add(theme.LIGHT);
-// function onThemeChange(evt) {
-//   console.log('click');
-//   // console.log(evt.currentTarget.checked);
-//   if (evt.currentTarget.checked) {
-//     bodyEl.classList.remove("light-theme");
-//     bodyEl.classList.add("dark-theme");
-//     themeAdjusterCheckboxEl.checked;
-//     localStorage.setItem('pageTheme','dark-theme');
-//     // console.log(localStorage)
-//     // console.log(themeAdjusterCheckboxEl.checked)
-//   }
-//   if (!evt.currentTarget.checked) {
-//     bodyEl.classList.remove("dark-theme");
-//     bodyEl.classList.add("light-theme");
-//     localStorage.setItem('pageTheme','light-theme');
-//     // console.log(localStorage);
-//   }
-//   console.log(bodyEl);
-// };
-// if (localStorage.pageTheme !== bodyEl.classList.contains("light-theme")) {
-//   bodyEl.classList.add("light-theme");
-//   bodyEl.classList.remove(".dark-theme");
-//     // console.log(bodyEl);
-//     // console.log(localStorage.pageTheme);
-//     // console.log(localStorage.pageTheme);
-// } else {
-//   bodyEl.classList.remove(".light-theme");
-//   bodyEl.classList.add(".dark-theme");
-// };
-//   // console.log(localStorage.pageTheme !== bodyEl.classList.contains("light-theme"))
-// const savedTheme = localStorage.getItem('pageTheme');
-// console.log(theTheme);
-// function onThemeChange(evt) {
-//   console.log('click');
-//   if (evt.currentTarget.checked) {
-//     localStorage.setItem('pageTheme','dark-theme');
-//   }
-//   else {
-//     localStorage.setItem('pageTheme','light-theme');
-//   }
-//   console.log(bodyEl);
-// };
-},{"../templates/menuItem.hbs":"../templates/menuItem.hbs","./menu.json":"menu.json"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+}
+},{}],"index.js":[function(require,module,exports) {
+"use strict";
+
+require("./styles.css");
+
+require("./pageMarkup.js");
+
+require("./pageTheme.js");
+},{"./styles.css":"styles.css","./pageMarkup.js":"pageMarkup.js","./pageTheme.js":"pageTheme.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -2479,7 +2485,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54682" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57081" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
